@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 function App() {
 
@@ -10,13 +11,22 @@ function App() {
   })
 
   const handleChange = (e) => {
-    const {name, value, type, checked} = e.target
+    const {name, value, type, checked} = e.target;
     
     const newData = { ...formData };
 
     newData[name] = type === 'checkbox' ? checked : value;
-    setFormData(newData)
+
+    setFormData(newData);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    axios.post('https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts', formData).then((resp) => {
+      console.log(resp.data)
+    })
+  }
 
   return (
     <>
@@ -26,7 +36,7 @@ function App() {
             <h1>React Post Form</h1>
           </div>
           <div className="col-12">
-            <form className="card border rounded p-4 bg-light">
+            <form className="card border rounded p-4 bg-light" onSubmit={handleSubmit}>
               <div className="row g-3">
                 <div className="col-12">
                   <label htmlFor="" className="control-label">
