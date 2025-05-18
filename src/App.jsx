@@ -1,6 +1,14 @@
 import { useState } from "react";
 
 function App() {
+
+  const [formData, setFormData] = useState({
+    author:"",
+    title:"",
+    body:"",
+    published: false
+  })
+
   return (
     <>
       <div className="container">
@@ -21,19 +29,20 @@ function App() {
                     id="author"
                     className="form-control"
                     placeholder="Autore"
+                    value={formData.author}
                   />
                 </div>
                 <div className="col-12">
                   <label htmlFor="" className="control-label">
                     Titolo
                   </label>
-                  <input type="text" name="title" id="title" className="form-control" placeholder="Titolo" />
+                  <input type="text" name="title" id="title" className="form-control" placeholder="Titolo" value={formData.title}/>
                 </div>
                 <div className="col-12">
                   <label htmlFor="" className="control-label">
                     Corpo dell'articolo
                   </label>
-                  <textarea name="author" id="author" className="form-control" placeholder="Corpo dell'articolo"></textarea>
+                  <textarea name="body" id="body" className="form-control" placeholder="Corpo dell'articolo" value={formData.body}></textarea>
                 </div>
                 <div className="col-12">
                   <div className="form-check">
